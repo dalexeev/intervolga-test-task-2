@@ -1,0 +1,8 @@
+<?php
+
+// Массив аргументов для функции `PDO::__construct()`.
+return [
+	'mysql:dbname=<DBNAME>;host=<HOSTNAME>',
+	'<USERNAME>',
+	'<PASSWORD>',
+];

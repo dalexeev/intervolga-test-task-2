@@ -8,7 +8,7 @@ define('REQUEST_PATH', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 // == Действия ==
 
 // Установка CSRF токена.
-if(!isset($_COOKIE['csrf'])) {
+if (!isset($_COOKIE['csrf'])) {
 	x_setcookie('csrf', random_key());
 }
 
@@ -27,7 +27,7 @@ function random_key(int $bytes = 8): string {
 ## Возвращает подключение PDO.
 function get_pdo(): PDO {
 	static $pdo;
-	if(!$pdo) {
+	if (!$pdo) {
 		$pdo = new PDO(...require 'config/db.php');
 		$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	}
@@ -48,7 +48,7 @@ function has_valid_csrf_token(): bool {
 ## Устанавливает cookie (третий параметр max-age вместо expires).
 function x_setcookie(string $name, string $value, int $max_age = 0): void {
 	$options = ['path' => '/', 'samesite' => 'Lax'];
-	if($max_age > 0) {
+	if ($max_age > 0) {
 		$options['expires'] = time() + $max_age;
 	}
 	setcookie($name, $value, $options);
